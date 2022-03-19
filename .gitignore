@@ -6,6 +6,7 @@
 
 ### CUSTOM
 .idea/discord.xml
+ApiServer/src/main/resources/application.properties
 
 ### Maven template
 target/
