@@ -1,6 +1,7 @@
 package com.dubsky.cardgame.apiserver.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +10,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
+
+    @Query(value = "SELECT * FROM gameservice.user WHERE username = :username AND password ="
+                            + " :password",
+            nativeQuery = true)
+    User login(String username, String password);
+
 }

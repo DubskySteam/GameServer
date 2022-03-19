@@ -22,6 +22,29 @@ public class UserController {
     }
 
     /**
+     * GET-Method to verify login information
+     *
+     * @param key API-Key for authentication
+     * @param username Username used to logging in
+     * @param password Password used to logging in
+     * @return User information in a JSON format
+     */
+    @GetMapping(path = "/login")
+    public User login(
+            @RequestParam String key,
+            @RequestParam String username,
+            @RequestParam String password) {
+        System.out.format("[GET] Login attempt: " + username);
+            User tmpUser = userRepository.login(username, password);
+            if (tmpUser != null
+                    && tmpUser.getUsername().equals(username)
+                    && tmpUser.getPassword().equals(password)) {
+                return tmpUser;
+            }
+            return null;
+        }
+
+    /**
      * POST-Method to create a new user
      *
      * @param key API-Key for authentication
