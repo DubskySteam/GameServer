@@ -9,6 +9,7 @@
 ![](https://img.shields.io/badge/API-1.0-green?style=for-the-badge&logo=Spring)
 ![](https://img.shields.io/badge/Backend-1.1-green?style=for-the-badge&logo=Java)
 
+![](https://img.shields.io/badge/Database-MySQL-blue?style=for-the-badge&logo=mysql)
 ![](https://img.shields.io/badge/Build-Gradle-blue?style=for-the-badge&logo=Gradle)
 ![](https://img.shields.io/badge/Deployment-Docker-blue?style=for-the-badge&logo=Docker)
 ![](https://img.shields.io/badge/Server-Ubuntu%2020.04%20LTS-orange?style=for-the-badge&logo=Ubuntu)
