@@ -2,6 +2,10 @@ package com.dubsky.secardgame.GameServer.Lobby;
 
 import com.dubsky.secardgame.GameServer.Entity.Player;
 
+/**
+ * @author Dubsky
+ * @version 1.1
+ */
 public class Lobby {
 
     int id;
@@ -9,11 +13,18 @@ public class Lobby {
     Player p2 = null;
     Player turn;
 
+    /**
+     * @since v1.0
+     * @param id ID of the lobby
+     */
     public Lobby(int id) {
         this.id = id;
         System.out.println("[INFO] com.dubsky.secardgame.GameServer.Lobby opened on ID " + this.id);
     }
 
+    /** Checks if 2 players are connected and connections are still alive
+     * @since v1.0
+     */
     public void check() {
         if(p1 != null && p2 != null && p1.isAlive() && p2.isAlive()) {
             System.out.println("[com.dubsky.secardgame.GameServer.Lobby] com.dubsky.secardgame.GameServer.Lobby is full, game will start now!");
@@ -21,6 +32,10 @@ public class Lobby {
         }
     }
 
+    /** Disconnects a player from the lobby
+     * @since v1.0
+     * @param player Player to be disconnected
+     */
     public void leave(Player player) {
         if(p1 == player) {
             p1 = null;
@@ -32,6 +47,11 @@ public class Lobby {
         System.out.println("[com.dubsky.secardgame.GameServer.Lobby] Player left the lobby");
     }
 
+    /** Joins a player to the lobby if not full
+     * @since v1.0
+     * @param player Player to join the game
+     * @return true or false depending on the result of the action
+     */
     public boolean join(Player player) {
         if(p1 == null) {
             p1 = player;
@@ -45,6 +65,9 @@ public class Lobby {
         return false;
     }
 
+    /** Changes the players turn
+     * @since v1.0
+     */
     public void changeTurn() {
         if (turn.equals(p1)) {
             turn = p2;
@@ -53,6 +76,9 @@ public class Lobby {
         }
     }
 
+    /** Starts the game
+     * @since v1.0
+     */
     public void start() {
         this.turn = p1;
         p1.sendToClient("[Server] com.dubsky.secardgame.GameServer.Lobby is full, game will start now!");
