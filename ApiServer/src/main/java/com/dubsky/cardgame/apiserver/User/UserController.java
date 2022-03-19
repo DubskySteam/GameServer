@@ -34,5 +34,6 @@ public class UserController {
             @RequestParam String username,
             @RequestParam String password) {
         System.out.println("[POST] New User: " + username);
+        userRepository.save(new User(username, password));
     }
 }
