@@ -72,7 +72,7 @@ public class Lobby {
         if (turn.equals(p1)) {
             turn = p2;
         } else {
-            turn  = p1;
+            turn = p1;
         }
     }
 
@@ -81,9 +81,8 @@ public class Lobby {
      */
     public void start() {
         this.turn = p1;
-        p1.sendToClient("[Server] com.dubsky.secardgame.GameServer.Lobby is full, game will start now!");
-        p2.sendToClient("[Server] com.dubsky.secardgame.GameServer.Lobby is full, game will start now!");
-        System.out.println("[com.dubsky.secardgame.GameServer.Lobby] Send Info to Player 1");
+        p1.sendToClient("[Server] Lobby is full, game will start now!");
+        p2.sendToClient("[Server] Lobby is full, game will start now!");
     }
 
     public Player getTurn() {
@@ -119,7 +118,13 @@ public class Lobby {
     }
 
     public void sendToChat(Player player, String msg) {
-        if (p1 == player) {p2.sendToClient("[P1]" + msg);} else {p1.sendToClient("[P2]" + msg);}
+        if (player == p1 && player.equals(this.turn)) {
+            p2.sendToClient("[P1]" + msg);
+            changeTurn();
+        } else if(player == p2 && player.equals(this.turn)) {
+            p1.sendToClient("[P2]" + msg);
+            changeTurn();
+        }
     }
 
     @Override
