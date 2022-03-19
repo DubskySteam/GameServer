@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 
-group = 'com.dubsky.cardgame'
+group = 'com.dubsky.secardgame'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
