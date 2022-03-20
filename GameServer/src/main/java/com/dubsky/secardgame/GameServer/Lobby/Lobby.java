@@ -44,7 +44,7 @@ public class Lobby {
             p2 = null;
             p1.sendToClient("[Server] A player left the lobby");
         }
-        System.out.println("[com.dubsky.secardgame.GameServer.Lobby] Player left the lobby");
+        System.out.println("[Lobby] Player left the lobby");
     }
 
     /** Joins a player to the lobby if not full
@@ -121,11 +121,11 @@ public class Lobby {
 
     public void sendToChat(Player player, String msg) {
         if (player == p1 && player.equals(this.turn)) {
-            p2.sendToClient("[P1]" + msg);
+            p2.sendToClient(msg);
             p2.sendToClient("newturn");
             changeTurn();
         } else if(player == p2 && player.equals(this.turn)) {
-            p1.sendToClient("[P2]" + msg);
+            p1.sendToClient(msg);
             p1.sendToClient("newturn");
             changeTurn();
         }
