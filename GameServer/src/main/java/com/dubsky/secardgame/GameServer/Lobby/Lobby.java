@@ -4,7 +4,7 @@ import com.dubsky.secardgame.GameServer.Entity.Player;
 
 /**
  * @author Dubsky
- * @version 1.1
+ * @version 1.2
  */
 public class Lobby {
 
