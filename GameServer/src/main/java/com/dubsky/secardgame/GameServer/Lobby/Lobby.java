@@ -4,7 +4,7 @@ import com.dubsky.secardgame.GameServer.Entity.Player;
 
 /**
  * @author Dubsky
- * @version 1.2
+ * @version 1.3
  */
 public class Lobby {
 
@@ -19,7 +19,14 @@ public class Lobby {
      */
     public Lobby(int id) {
         this.id = id;
-        System.out.println("[INFO] Lobby opened on ID " + this.id);
+    }
+
+    /** Returns if the lobby is filled
+     * @since v1.0
+     * @return boolean
+     */
+    public boolean isFull() {
+        return p1 != null && p2 != null;
     }
 
     /** Checks if 2 players are connected and connections are still alive
@@ -27,7 +34,7 @@ public class Lobby {
      */
     public void check() {
         if(p1 != null && p2 != null && p1.isAlive() && p2.isAlive()) {
-            System.out.println("[Lobby] Lobby is full, game will start now!");
+            System.out.println("[Lobby "+this.id+"] Lobby is full, game will start now!");
             start();
         }
     }
@@ -39,12 +46,12 @@ public class Lobby {
     public void leave(Player player) {
         if(p1 == player) {
             p1 = null;
-            p2.sendToClient("[Server] A player left the lobby");
+            p2.sendToClient("[Lobby "+this.id+"] A player left the lobby");
         } else {
             p2 = null;
-            p1.sendToClient("[Server] A player left the lobby");
+            p1.sendToClient("[Lobby "+this.id+"] A player left the lobby");
         }
-        System.out.println("[Lobby] Player left the lobby");
+        System.out.println("[Lobby "+this.id+"] Player left the lobby");
     }
 
     /** Joins a player to the lobby if not full
@@ -133,7 +140,7 @@ public class Lobby {
 
     @Override
     public String toString() {
-        return "com.dubsky.secardgame.GameServer.Lobby{" +
+        return "Lobby{" +
                 "id=" + id +
                 ", p1=" + p1 +
                 ", p2=" + p2 +

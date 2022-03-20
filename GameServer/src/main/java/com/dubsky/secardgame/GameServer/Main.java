@@ -1,6 +1,7 @@
 package com.dubsky.secardgame.GameServer;
 
 import com.dubsky.secardgame.GameServer.Entity.Player;
+import com.dubsky.secardgame.GameServer.Lobby.Handler;
 import com.dubsky.secardgame.GameServer.Lobby.Lobby;
 
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.net.Socket;
 
 /**
  * @author Dubsky
- * @version 1.1
+ * @version 1.2
  */
 public class Main {
 
@@ -18,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("[INFO] Server started");
+        Handler handler = new Handler(5);
         Lobby lobby = new Lobby(0);
         int id = 1;
 
