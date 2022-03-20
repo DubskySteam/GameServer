@@ -19,7 +19,7 @@ public class Lobby {
      */
     public Lobby(int id) {
         this.id = id;
-        System.out.println("[INFO] com.dubsky.secardgame.GameServer.Lobby opened on ID " + this.id);
+        System.out.println("[INFO] Lobby opened on ID " + this.id);
     }
 
     /** Checks if 2 players are connected and connections are still alive
@@ -27,7 +27,7 @@ public class Lobby {
      */
     public void check() {
         if(p1 != null && p2 != null && p1.isAlive() && p2.isAlive()) {
-            System.out.println("[com.dubsky.secardgame.GameServer.Lobby] com.dubsky.secardgame.GameServer.Lobby is full, game will start now!");
+            System.out.println("[Lobby] Lobby is full, game will start now!");
             start();
         }
     }
@@ -81,8 +81,10 @@ public class Lobby {
      */
     public void start() {
         this.turn = p1;
-        p1.sendToClient("[Server] Lobby is full, game will start now!");
-        p2.sendToClient("[Server] Lobby is full, game will start now!");
+        p1.sendToClient("full");
+        p2.sendToClient("full");
+        p1.sendToClient("1");
+        p2.sendToClient("2");
     }
 
     public Player getTurn() {
@@ -120,9 +122,11 @@ public class Lobby {
     public void sendToChat(Player player, String msg) {
         if (player == p1 && player.equals(this.turn)) {
             p2.sendToClient("[P1]" + msg);
+            p2.sendToClient("newturn");
             changeTurn();
         } else if(player == p2 && player.equals(this.turn)) {
             p1.sendToClient("[P2]" + msg);
+            p1.sendToClient("newturn");
             changeTurn();
         }
     }
