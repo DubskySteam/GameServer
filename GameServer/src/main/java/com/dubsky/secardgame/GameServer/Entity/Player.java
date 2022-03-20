@@ -5,6 +5,10 @@ import com.dubsky.secardgame.GameServer.Lobby.Lobby;
 import java.io.*;
 import java.net.Socket;
 
+/**
+ * @author Dubsky
+ * @version 1.1
+ */
 public final class Player extends Thread {
 
     private final int id;

@@ -1,0 +1,6 @@
+unnamed package
+com.dubsky.cardgame.apiserver
+com.dubsky.cardgame.apiserver.User
+com.dubsky.secardgame.GameServer
+com.dubsky.secardgame.GameServer.Entity
+com.dubsky.secardgame.GameServer.Lobby

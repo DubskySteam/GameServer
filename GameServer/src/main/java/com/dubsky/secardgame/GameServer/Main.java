@@ -19,7 +19,7 @@ public class Main {
 
         System.out.println("[INFO] Server started");
         Lobby lobby = new Lobby(0);
-        int id = 0;
+        int id = 1;
 
         ServerSocket serverSocket = null;
         Socket socket = null;
