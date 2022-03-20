@@ -36,7 +36,7 @@ public class Main {
             } catch (IOException e) {
                 System.out.println("I/O error: " + e);
             }
-            System.out.printf("[SOCKET] New socket generated (%s)\n>> Player will join com.dubsky.secardgame.GameServer.Lobby %d\n", socket.getInetAddress().getHostAddress(), lobby.getId());
+            System.out.printf("[SOCKET] New socket generated (%s)\n>> Player will join Lobby %d\n", socket.getInetAddress().getHostAddress(), lobby.getId());
             new Player(id, lobby, socket).start();
             id++;
         }
