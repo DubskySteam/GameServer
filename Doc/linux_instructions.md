@@ -8,7 +8,7 @@
 - Optional: 25566(TCP)
 
 ## Create the service file
-'''text
+```
 [Unit]
 Description=SE Game Server
 [Service]
@@ -23,7 +23,7 @@ RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
-'''
+```
 
 Save the file as "GameService.service" in the /etc/systemd/system/ folder.
 
@@ -31,20 +31,20 @@ You have to change 2 parameters in the script. 1st being the working directory. 
 The 2nd parameter is the 'ExecStart' path, which leads to the script that starts the .jar it-self.
 
 ## Create the start script
-'''
+```
 #!/bin/sh
 sudo /usr/bin/java -jar GameServer.jar
-'''
+```
 
 The first path of the script has to lead to your java installation. Change the name of the jar to whatever name you will save the files as.
 Save the script, so that the path of the service file matches.
 
 ## Enable the service
-'''cmd
+```
 sudo systemctl enable GameService.service
-'''
+```
 
 ## Run the service
-'''cmd
+```
 sudo systemctl start GameService.service
-'''
+```
