@@ -81,7 +81,7 @@ public class UserController {
     }
 
     /**
-     * POST-Method to a users email
+     * POST-Method to a users password
      *
      * @param key API-Key for authentication
      * @param id id of the user
