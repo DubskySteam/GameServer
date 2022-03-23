@@ -20,7 +20,7 @@ public class Main {
 
         System.out.println("[INFO] Server started");
         Handler handler = new Handler(5);
-        Lobby lobby = new Lobby(0);
+        //Lobby lobby = new Lobby(0);
         int id = 1;
 
         ServerSocket serverSocket = null;
@@ -38,8 +38,8 @@ public class Main {
             } catch (IOException e) {
                 System.out.println("I/O error: " + e);
             }
-            System.out.printf("[SOCKET] New socket generated (%s)\n>> Player will join Lobby %d\n", socket.getInetAddress().getHostAddress(), lobby.getId());
-            new Player(id, lobby, socket).start();
+            System.out.printf("[SOCKET] New socket generated (%s)\n>> Player will join Lobby %d\n", socket.getInetAddress().getHostAddress(), handler.findLobby().getId());
+            new Player(id, handler.findLobby(), socket).start();
             id++;
         }
 

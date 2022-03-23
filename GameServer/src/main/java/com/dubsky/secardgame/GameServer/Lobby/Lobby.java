@@ -127,14 +127,18 @@ public class Lobby {
     }
 
     public void sendToChat(Player player, String msg) {
-        if (player == p1 && player.equals(this.turn)) {
-            p2.sendToClient(msg);
-            p2.sendToClient("newturn");
-            changeTurn();
-        } else if(player == p2 && player.equals(this.turn)) {
-            p1.sendToClient(msg);
-            p1.sendToClient("newturn");
-            changeTurn();
+        try {
+            if (player == p1 && player.equals(this.turn)) {
+                p2.sendToClient(msg);
+                p2.sendToClient("newturn");
+                changeTurn();
+            } else if(player == p2 && player.equals(this.turn)) {
+                p1.sendToClient(msg);
+                p1.sendToClient("newturn");
+                changeTurn();
+            }
+        } catch (Exception e) {
+            System.out.println("[Lobby] Player left, socket couldn't be communicate");
         }
     }
 

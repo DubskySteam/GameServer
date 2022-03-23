@@ -67,7 +67,7 @@ public class ClientTest {
     public static void main(String[] args) {
 
         try {
-            socket = new Socket("185.194.217.213", 25565);
+            socket = new Socket("localhost", 25565);
             Thread t1 = new Thread(new Client(socket));
             Thread t2 = new Thread(new Listener(socket));
             t1.start();
