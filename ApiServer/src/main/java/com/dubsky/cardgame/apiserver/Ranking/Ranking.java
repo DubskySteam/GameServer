@@ -1,12 +1,8 @@
 package com.dubsky.cardgame.apiserver.Ranking;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Dubsky
@@ -19,14 +15,18 @@ public class Ranking {
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private int id;
 
-    @NotNull
     private int level;
-    @NotNull
     private String rank;
 
     public Ranking() {}
+
+    public Ranking(int id) {
+        this.id = id;
+    }
 
     public Ranking(int id, int level, String rank) {
         this.id = id;
