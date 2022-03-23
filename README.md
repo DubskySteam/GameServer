@@ -2,12 +2,12 @@
 
 ### Frontend
 ![](https://img.shields.io/badge/App-Canceled-red?style=for-the-badge&logo=Android)
-![](https://img.shields.io/badge/Desktop-1.2-green?style=for-the-badge&logo=java)
+![](https://img.shields.io/badge/Desktop-2.1-green?style=for-the-badge&logo=java)
 
 ### Backend
-![](https://img.shields.io/badge/Website-1.0-red?style=for-the-badge&logo=Bootstrap)
-![](https://img.shields.io/badge/API-1.0-green?style=for-the-badge&logo=Spring)
-![](https://img.shields.io/badge/Backend-1.1-green?style=for-the-badge&logo=Java)
+![](https://img.shields.io/badge/Website-1.2-red?style=for-the-badge&logo=Bootstrap)
+![](https://img.shields.io/badge/API-1.3-green?style=for-the-badge&logo=Spring)
+![](https://img.shields.io/badge/Backend-1.4-green?style=for-the-badge&logo=Java)
 
 ![](https://img.shields.io/badge/Database-MySQL-blue?style=for-the-badge&logo=mysql)
 ![](https://img.shields.io/badge/Build-Gradle-blue?style=for-the-badge&logo=Gradle)
