@@ -1,7 +1,7 @@
 package com.dubsky.secardgame.GameServer;
 
 import com.dubsky.secardgame.GameServer.Entity.Player;
-import com.dubsky.secardgame.GameServer.Lobby.Lobby;
+import com.dubsky.secardgame.GameServer.Lobby.Handler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -9,7 +9,7 @@ import java.net.Socket;
 
 /**
  * @author Dubsky
- * @version 1.1
+ * @version 1.2
  */
 public class Main {
 
@@ -18,26 +18,26 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("[INFO] Server started");
-        Lobby lobby = new Lobby(0);
+        Handler handler = new Handler(5);
         int id = 1;
 
-        ServerSocket serverSocket = null;
+        ServerSocket server = null;
         Socket socket = null;
 
         try {
-            serverSocket = new ServerSocket(PORT);
+            server = new ServerSocket(PORT);
         } catch (IOException e) {
             e.printStackTrace();
 
         }
         while (true) {
             try {
-                socket = serverSocket.accept();
+                socket = server.accept();
             } catch (IOException e) {
                 System.out.println("I/O error: " + e);
             }
-            System.out.printf("[SOCKET] New socket generated (%s)\n>> Player will join com.dubsky.secardgame.GameServer.Lobby %d\n", socket.getInetAddress().getHostAddress(), lobby.getId());
-            new Player(id, lobby, socket).start();
+            System.out.printf("[SOCKET] New socket generated (%s)\n>> Player will join Lobby %d\n", socket.getInetAddress().getHostAddress(), handler.findLobby().getId());
+            new Player(id, handler.findLobby(), socket).start();
             id++;
         }
 

@@ -30,7 +30,7 @@ public final class Player extends Thread {
 
     public void run() {
         if (!this.lobby.join(this)) {
-            System.out.println("[INFO] Access denied for Player " + this.id + " -- com.dubsky.secardgame.GameServer.Lobby was full");
+            System.out.println("[INFO] Access denied for Player " + this.id + " -- Lobby was full");
             try {
                 connection.close();
             } catch (IOException e) {
@@ -43,21 +43,21 @@ public final class Player extends Thread {
             } catch (IOException e) {
                 return;
             }
-            String line;
+            String inp;
             while (true) {
                 try {
-                    line = reader.readLine();
-                    if ((line == null) || line.equalsIgnoreCase("QUIT")) {
-                        System.out.println("[SOCKET] Socket disconnected ["+connection.getInetAddress().getHostAddress()+"]");
+                    inp = reader.readLine();
+                    if ((inp == null) || inp.equalsIgnoreCase("over")) {
+                        System.out.println("[SOCKET] Socket disconnected [" + connection.getInetAddress().getHostAddress() + "]");
                         lobby.leave(this);
                         connection.close();
                         return;
                     } else {
-                        System.out.println("Player " + id + " >> " + line + "\n\r");
-                        lobby.sendToChat(this, line);
+                        System.out.println("Player " + id + " >> " + inp + "\n\r");
+                        lobby.sendToChat(this, inp);
                     }
                 } catch (IOException e) {
-                    System.out.println("[SOCKET] Socket disconnected ["+connection.getInetAddress().getHostAddress()+"]");
+                    System.out.println("[SOCKET] Socket disconnected [" + connection.getInetAddress().getHostAddress() + "]");
                     lobby.leave(this);
                     return;
                 }
