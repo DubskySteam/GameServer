@@ -36,4 +36,17 @@ public class RankingController {
         rankingRepository.save(new Ranking(id));
     }
 
+    /**
+     * POST-Method to create a new ranking
+     *
+     * @param key API-Key for authentication
+     * @param id id of the user
+     */
+    @PostMapping(path = "/wonGame")
+    public void wonGame(@RequestParam String key,
+            @RequestParam int id) {
+        System.out.println("[POST] Added win to (id="+id+") >> " + id );
+        rankingRepository.addWin(id);
+    }
+
 }
