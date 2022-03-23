@@ -1,8 +1,11 @@
 package com.dubsky.cardgame.apiserver.User;
 
+import com.dubsky.cardgame.apiserver.Ranking.Ranking;
+import com.dubsky.cardgame.apiserver.Ranking.RankingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -16,10 +19,12 @@ import java.util.Optional;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final RankingRepository rankingRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, RankingRepository rankingRepository) {
         this.userRepository = userRepository;
+        this.rankingRepository = rankingRepository;
     }
 
     /**
@@ -36,14 +41,27 @@ public class UserController {
             @RequestParam String username,
             @RequestParam String password) {
         System.out.format("[GET] Login attempt >> " + username);
-            User tmpUser = userRepository.login(username, password);
-            if (tmpUser != null
-                    && tmpUser.getUsername().equals(username)
-                    && tmpUser.getPassword().equals(password)) {
-                return tmpUser;
-            }
-            return null;
+        User tmpUser = userRepository.login(username, password);
+        if (tmpUser != null
+                && tmpUser.getUsername().equals(username)
+                && tmpUser.getPassword().equals(password)) {
+            return tmpUser;
         }
+        return null;
+    }
+
+    /**
+     * GET-Method to get all users
+     *
+     * @param key API-Key for authentication
+     * @return User information in a JSON format
+     */
+    @GetMapping(path = "/getUsers")
+    public List<User> getUsers(
+            @RequestParam String key) {
+        System.out.format("[GET] Get Users");
+        return userRepository.findAll();
+    }
 
     /**
      * POST-Method to create a new user
@@ -59,6 +77,20 @@ public class UserController {
             @RequestParam String password) {
         System.out.println("[POST] New User >> " + username);
         userRepository.save(new User(username, password));
+        User tmpuser = userRepository.findByUsername(username);
+        //rankingRepository.save(new Ranking(tmpuser.getId()));
+    }
+
+    /** POST-Method to delete a user
+     *
+     * @param key API-Key for authentication
+     * @param id User ID
+     */
+    @PostMapping(path = "deleteUser")
+    public void deleteUser(@RequestParam String key, @RequestParam int id) {
+        System.out.println("[POST] Delete User with ID >> " + id);
+        Optional<User> u = userRepository.findById(id);
+        u.ifPresent(userRepository::delete);
     }
 
     /**

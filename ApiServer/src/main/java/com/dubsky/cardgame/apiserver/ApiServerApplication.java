@@ -7,7 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ApiServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiServerApplication.class, args);
+        try {
+            SpringApplication.run(ApiServerApplication.class, args);
+        } catch (Exception e) {
+            System.out.println("Error with the main application");
+            e.printStackTrace();
+        }
     }
 
 }
