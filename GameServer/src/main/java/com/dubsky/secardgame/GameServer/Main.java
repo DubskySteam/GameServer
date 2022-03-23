@@ -20,21 +20,20 @@ public class Main {
 
         System.out.println("[INFO] Server started");
         Handler handler = new Handler(5);
-        //Lobby lobby = new Lobby(0);
         int id = 1;
 
-        ServerSocket serverSocket = null;
+        ServerSocket server = null;
         Socket socket = null;
 
         try {
-            serverSocket = new ServerSocket(PORT);
+            server = new ServerSocket(PORT);
         } catch (IOException e) {
             e.printStackTrace();
 
         }
         while (true) {
             try {
-                socket = serverSocket.accept();
+                socket = server.accept();
             } catch (IOException e) {
                 System.out.println("I/O error: " + e);
             }

@@ -48,7 +48,7 @@ public final class Player extends Thread {
                 try {
                     inp = reader.readLine();
                     if ((inp == null) || inp.equalsIgnoreCase("over")) {
-                        System.out.println("[SOCKET] Socket disconnected ["+connection.getInetAddress().getHostAddress()+"]");
+                        System.out.println("[SOCKET] Socket disconnected [" + connection.getInetAddress().getHostAddress() + "]");
                         lobby.leave(this);
                         connection.close();
                         return;
@@ -57,7 +57,7 @@ public final class Player extends Thread {
                         lobby.sendToChat(this, inp);
                     }
                 } catch (IOException e) {
-                    System.out.println("[SOCKET] Socket disconnected ["+connection.getInetAddress().getHostAddress()+"]");
+                    System.out.println("[SOCKET] Socket disconnected [" + connection.getInetAddress().getHostAddress() + "]");
                     lobby.leave(this);
                     return;
                 }

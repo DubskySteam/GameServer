@@ -14,57 +14,65 @@ public class Lobby {
     Player turn;
 
     /**
-     * @since v1.0
      * @param id ID of the lobby
+     * @since v1.0
      */
     public Lobby(int id) {
         this.id = id;
     }
 
-    /** Returns if the lobby is filled
-     * @since v1.0
+    /**
+     * Returns if the lobby is filled
+     *
      * @return boolean
+     * @since v1.0
      */
     public boolean isFull() {
         return p1 != null && p2 != null;
     }
 
-    /** Checks if 2 players are connected and connections are still alive
+    /**
+     * Checks if 2 players are connected and connections are still alive
+     *
      * @since v1.0
      */
     public void check() {
-        if(p1 != null && p2 != null && p1.isAlive() && p2.isAlive()) {
-            System.out.println("[Lobby "+this.id+"] Lobby is full, game will start now!");
+        if (p1 != null && p2 != null && p1.isAlive() && p2.isAlive()) {
+            System.out.println("[Lobby " + this.id + "] Lobby is full, game will start now!");
             start();
         }
     }
 
-    /** Disconnects a player from the lobby
-     * @since v1.0
+    /**
+     * Disconnects a player from the lobby
+     *
      * @param player Player to be disconnected
+     * @since v1.0
      */
     public void leave(Player player) {
-        if(p1 == player) {
+        if (p1 == player) {
             p1 = null;
-            p2.sendToClient("[Lobby "+this.id+"] A player left the lobby");
+            p2.sendToClient("[Lobby " + this.id + "] A player left the lobby");
         } else {
             p2 = null;
-            p1.sendToClient("[Lobby "+this.id+"] A player left the lobby");
+            p1.sendToClient("[Lobby " + this.id + "] A player left the lobby");
         }
-        System.out.println("[Lobby "+this.id+"] Player left the lobby");
+        System.out.println("[Lobby " + this.id + "] Player left the lobby");
     }
 
-    /** Joins a player to the lobby if not full
-     * @since v1.0
+    /**
+     * Joins a player to the lobby if not full
+     *
      * @param player Player to join the game
      * @return true or false depending on the result of the action
+     * @since v1.0
      */
     public boolean join(Player player) {
-        if(p1 == null) {
+        if (p1 == null) {
             p1 = player;
             check();
             return true;
-        } else if(p2 == null) {
+        } else if (p2 == null) {
             p2 = player;
             check();
             return true;
@@ -72,7 +80,9 @@ public class Lobby {
         return false;
     }
 
-    /** Changes the players turn
+    /**
+     * Changes the players turn
+     *
      * @since v1.0
      */
     public void changeTurn() {
@@ -83,7 +93,9 @@ public class Lobby {
         }
     }
 
-    /** Starts the game
+    /**
+     * Starts the game
+     *
      * @since v1.0
      */
     public void start() {
@@ -132,7 +144,7 @@ public class Lobby {
                 p2.sendToClient(msg);
                 p2.sendToClient("newturn");
                 changeTurn();
-            } else if(player == p2 && player.equals(this.turn)) {
+            } else if (player == p2 && player.equals(this.turn)) {
                 p1.sendToClient(msg);
                 p1.sendToClient("newturn");
                 changeTurn();
